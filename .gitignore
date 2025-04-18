@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+*.log
+.env
+venv/
+.idea/
+.vscode/
+*.zip
+*.mp4
+*.png
+
