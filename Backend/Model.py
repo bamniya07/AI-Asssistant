@@ -2,11 +2,23 @@ import cohere # Import the Cohere library for Al services.
 from rich import print #Import the Rich library to enhance terminal outputs. 
 from dotenv import dotenv_values #Import dotenv to load environment variables from a.env file. 
 
-#Load environment variables from the .env file. 
-env_vars = dotenv_values(".env") 
+# #Load environment variables from the .env file. 
+# env_vars = dotenv_values(".env") 
 
-#Retrieve API key. 
-CohereAPIKey = env_vars.get("CohereAPIKey") 
+# #Retrieve API key. 
+# CohereAPIKey = env_vars.get("CohereAPIKey") 
+
+import os
+
+# Try to get from environment variables (Render)
+CohereAPIKey = os.getenv("CO_API_KEY")
+
+# Fallback to local .env (for development)
+if not CohereAPIKey:
+    from dotenv import dotenv_values
+    env_vars = dotenv_values(".env")
+    CohereAPIKey = env_vars.get("CohereAPIKey")
+
 
 #Create a Cohere client using the provided API key. 
 co = cohere.Client(api_key=CohereAPIKey) 
